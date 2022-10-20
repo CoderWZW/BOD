@@ -2,6 +2,8 @@
 
 The implement of QGC is on <a href="https://github.com/Coder-Yu/SELFRec">SELFRec</a>. <br>
 
+paper link:<a href="https://arxiv.org/abs/2210.10321">Quick Graph Conversion for Robust Recommendation</a>.<br>
+
 <h2>Requirements</h2>
 	
 ```
