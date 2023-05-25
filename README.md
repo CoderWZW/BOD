@@ -1,8 +1,6 @@
-# QGC
+# BOD
 
-The implement of QGC is on <a href="https://github.com/Coder-Yu/SELFRec">SELFRec</a>. <br>
-
-Paper link: <a href="https://arxiv.org/abs/2210.10321">Quick Graph Conversion for Robust Recommendation</a>.<br>
+The implement of BOD is on <a href="https://github.com/Coder-Yu/SELFRec">SELFRec</a>. <br>
 
 <h2>Requirements</h2>
 	

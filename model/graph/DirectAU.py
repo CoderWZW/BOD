@@ -27,37 +27,19 @@ class DirectAU(GraphRecommender):
                         if y[index] == 1:
                             pos_u_idx.append(u_idx[index])
                             pos_i_idx.append(i_idx[index])
-                    #print(batch, pos_u_idx, pos_i_idx)
                     model.train()
                     rec_user_emb, rec_item_emb = model()
                     user_emb, item_emb = rec_user_emb[u_idx], rec_item_emb[i_idx]
                     pos_user_emb, pos_item_emb = rec_user_emb[pos_u_idx], rec_item_emb[pos_i_idx]
                     alignment = alignment_loss(pos_user_emb, pos_item_emb)
                     uniformity = self.reg * (uniformity_loss(user_emb) + uniformity_loss(item_emb)) / 2
-                    #cl_loss = 0.001 * model.cal_cl_loss([u_idx,pos_u_idx])
                     l2 = l2_reg_loss(0.001, user_emb, pos_item_emb) 
-                    # print("a", alignment)
-                    # print("u", uniformity)
-                    #batch_loss = alignment +  uniformity + cl_loss +l2
                     batch_loss = alignment +  uniformity +l2
                     optimizer.zero_grad()
                     batch_loss.backward()
                     optimizer.step()
                     if n % 1000 == 0:
                         print('training:', epoch + 1, 'batch', n, 'batch_loss:', batch_loss.item())
-            # for n, batch in enumerate(next_batch_pairwise(self.data, self.batch_size)):
-            #     user_idx, pos_idx, neg_idx = batch
-            #     print(type(batch))
-            #     model.train()
-            #     rec_user_emb, rec_item_emb = model()
-            #     user_emb, pos_item_emb, neg_item_emb = rec_user_emb[user_idx], rec_item_emb[pos_idx], rec_item_emb[neg_idx]
-            #     batch_loss = bpr_loss(user_emb, pos_item_emb, neg_item_emb) + l2_reg_loss(self.reg, user_emb,pos_item_emb)
-            #     # Backward and optimize
-            #     optimizer.zero_grad()
-            #     batch_loss.backward()
-            #     optimizer.step()
-            #     if n % 100 == 0:
-            #         print('training:', epoch + 1, 'batch', n, 'batch_loss:', batch_loss.item())
             model.eval()
             with torch.no_grad():
                 self.user_emb, self.item_emb = self.model()

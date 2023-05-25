@@ -8,6 +8,13 @@ def bpr_loss(user_emb, pos_item_emb, neg_item_emb):
     loss = -torch.log(10e-8 + torch.sigmoid(pos_score - neg_score))
     return torch.mean(loss)
 
+def bpr_loss_weight(user_emb, pos_item_emb, neg_item_emb, weight_pos, weight_neg):
+    pos_score = weight_pos*torch.mul(user_emb, pos_item_emb).sum(dim=1)
+    neg_score = weight_neg*torch.mul(user_emb, neg_item_emb).sum(dim=1)
+    loss = -torch.log(10e-8 + torch.sigmoid(pos_score - neg_score))
+    return torch.mean(loss)
+
+
 def alignment_loss_weight(x, y, x1, y1, alpha=2):
     x, y = F.normalize(x, dim=-1), F.normalize(y, dim=-1)
     weight = torch.diag(torch.matmul(x1,y1.T))

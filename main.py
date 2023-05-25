@@ -2,9 +2,9 @@ from SELFRec import SELFRec
 from util.conf import ModelConf
 
 if __name__ == '__main__':
-    baseline = ['LightGCN','MF','DirectAU']
-    graph_models = ['SGL', 'SimGCL', 'BUIR',]
-    data_augmentation = ['QGrace']
+    baseline = ['NCF','LightGCN','MF','NGCF','DirectAU']
+    graph_models = ['SGL', 'SimGCL']
+    data_augmentation = ['BOD']
 
     print('Baseline Models:')
     print('   '.join(baseline))
@@ -12,12 +12,11 @@ if __name__ == '__main__':
     print('Graph-Based Models:')
     print('   '.join(graph_models))
     print('-' * 80)
-    print('data_augmentation Models:')
+    print('Denoising Models:')
     print('   '.join(data_augmentation))
 
     print('=' * 80)
     model = input('Please enter the model you want to run:')
-
     import time
 
     s = time.time()

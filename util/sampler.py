@@ -26,6 +26,25 @@ def next_batch_pairwise(data,batch_size):
             j_idx.append(data.item[neg_item])
         yield u_idx, i_idx, j_idx
 
+def sample_batch_pairwise(data,batch_size):
+    training_data = data.training_data
+    data_size = len(training_data)
+    idxs = [rand.randint(0,data_size-1) for i in range(batch_size)]
+    users = [training_data[idx][0] for idx in idxs]
+    items = [training_data[idx][1] for idx in idxs]
+
+    u_idx, i_idx, j_idx = [], [], []
+
+    item_list = list(data.item.keys())
+    for i, user in enumerate(users):
+        i_idx.append(data.item[items[i]])
+        u_idx.append(data.user[user])
+        neg_item = choice(item_list)
+        while neg_item in data.training_set_u[user]:
+            neg_item = choice(item_list)
+        j_idx.append(data.item[neg_item])
+    return u_idx, i_idx, j_idx
+
 
 def next_batch_pointwise(data,batch_size):
     training_data = data.training_data
