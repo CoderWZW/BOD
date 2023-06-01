@@ -2,6 +2,8 @@
 
 The implement of BOD is on <a href="https://github.com/Coder-Yu/SELFRec">SELFRec</a>. <br>
 
+> Zongwei Wang, Min Gao*, Wentao Li*, Junliang Yu, Linxin Guo, Hongzhi Yin. Efficient Bi-Level Optimization for Recommendation Denoising. KDD 2023.
+
 <h2>Requirements</h2>
 	
 ```
