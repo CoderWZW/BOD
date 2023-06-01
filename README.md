@@ -1,6 +1,5 @@
 # BOD
 
-The implement of BOD is on <a href="https://github.com/Coder-Yu/SELFRec">SELFRec</a>. <br>
 This is the official PyTorch implementation for the paper:
 > Zongwei Wang, Min Gao*, Wentao Li*, Junliang Yu, Linxin Guo, Hongzhi Yin. Efficient Bi-Level Optimization for Recommendation Denoising. KDD 2023.
 
